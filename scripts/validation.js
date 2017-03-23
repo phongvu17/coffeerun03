@@ -8,7 +8,8 @@
         },
 
         isDecafOverTwenty: function(coffee, strength) {
-            return ((coffee === 'decaf') && (strength > 20));
+            var str = /decaf/;
+            return !(str.test(coffee) && (strength > 20));
         }
     };
 

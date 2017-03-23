@@ -48,19 +48,13 @@
 
     FormHandler.prototype.addCoffeeInputHandler = function(fn) {
         console.log('Setting coffee input handler for form');
-        this.$formElement.on('input', '[name="coffee"]', function(event) {
-            var coffee = event.target.value;
+        this.$formElement.on('input', '[name="coffee"], [name="strength"]', function() {
+            var coffee = document.getElementById('coffeeOrder').value;
             var strength = document.getElementById('strengthLevel').value;
-            var message = '';
             if (fn(coffee, strength)) {
-                message = coffee + ' cannot have caffeine rating of ' + strength;
-                console.log(message);
-                console.log(strength);
-                event.target.setCustomValidity(message);
+                document.getElementById('coffeeOrder').setCustomValidity('');
             } else {
-                console.log(message);
-                console.log(strength);
-                event.target.setCustomValidity('');
+                document.getElementById('coffeeOrder').setCustomValidity(coffee + ' cannot have caffeine rating over twenty.');
             }
         });
     };
